@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CardComponent } from '../../components/card/card.component';
 import { AsyncPipe, I18nPluralPipe, I18nSelectPipe, JsonPipe, KeyValuePipe, SlicePipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
+import { interval, tap } from 'rxjs';
 
 const client1 = {
   name: 'Sebastian',
@@ -77,4 +78,6 @@ export default class UncommonPageComponent {
       console.log('Promise finished')
     },3500)
   })
+
+  myObservableInterval = interval(2000)
 }
