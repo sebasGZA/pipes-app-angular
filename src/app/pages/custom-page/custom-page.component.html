@@ -14,3 +14,57 @@
         </button>
     </div>
 </div>
+<div class="divider my-2"></div>
+
+<section class="my-2">
+    <h1 class="text-2xl font-bold">Custom pipes in action</h1>
+    <div class="flex gap-2 justify-end w-full">
+        <button class="btn btn-primary">
+            By name
+        </button>
+        <button class="btn btn-accent">
+            By flying
+        </button>
+        <button class="btn btn-secondary">
+            By color
+        </button>
+        <button class="btn btn-info">
+            By creator
+        </button>
+    </div>
+</section>
+
+<div class="overflow-x-auto w-full">
+    <table class="table table-xs w-full">
+        <!-- head -->
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Canfly</th>
+                <th>Color</th>
+                <th>Craetor</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (hero of heroes(); track hero.id) {
+            <tr>
+                <th>{{hero.id}}</th>
+                <td>{{hero.name}}</td>
+                <td>
+                    <span class="text-xs w-44" [class.text-success]="hero.canFly" [class.text-accent]="!hero.canFly">
+                        {{hero.canFly | canFly}}
+                    </span>
+                </td>
+                <td>
+                    <span class="text-xs w-44" [style.color]="hero.color | heroColor">
+                        {{hero.color | heroColor}}
+                    </span>
+                </td>
+                <td>{{hero.creator}}</td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
