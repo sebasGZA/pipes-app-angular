@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CardComponent } from '../../components/card/card.component';
-import { I18nPluralPipe, I18nSelectPipe, JsonPipe, KeyValuePipe, SlicePipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
+import { AsyncPipe, I18nPluralPipe, I18nSelectPipe, JsonPipe, KeyValuePipe, SlicePipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
 
 const client1 = {
   name: 'Sebastian',
@@ -20,6 +20,7 @@ const client2 = {
   selector: 'app-uncommon-page',
   imports: [
     CardComponent,
+    AsyncPipe,
     I18nSelectPipe,
     I18nPluralPipe,
     KeyValuePipe,
@@ -69,4 +70,11 @@ export default class UncommonPageComponent {
     age: 30,
     address: 'New york, USA'
   }
+
+  promiseValue:Promise<string> = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('We have data')
+      console.log('Promise finished')
+    },3500)
+  })
 }
