@@ -36,4 +36,10 @@
             {{clients() | slice:1:-2}}
         </p>
     </app-card>
+
+    <app-card title="JsonPipe">
+        <pre class="text-primary">{{clients() | json | uppercase}}</pre>
+        <pre class="text-primary">{{client() | json}}</pre>
+        <pre class="text-primary">{{clients().join(', ') | json}}</pre>
+    </app-card>
 </section>
