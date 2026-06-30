@@ -24,7 +24,6 @@ export default class BasicPageComponent {
     onCleanUp(() => interval)
   })
 
-
   changeLocale(locale: AvailabeLocale) {
     this.localeService.changeLocale(locale)
   }
