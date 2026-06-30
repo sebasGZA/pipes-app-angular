@@ -1,1 +1,71 @@
-<p>custom-page.component works!</p>,
+<section class="mx-5">
+    <h1 class="text-2xl font-bold">Custom Pipes</h1>
+    <h3 class="text-lg font-thin">Pipes no included in <strong>Angular</strong></h3>
+</section>
+
+<div class="stats shadow">
+    <div class="stat">
+        <div class="stat-title">ToggleCasePipe</div>
+        <div class="stat-value">{{name() | toggleCase:upper()}}</div>
+        <div class="stat-desc">{{name()}}</div>
+
+        <button class="btn btn-primary" (click)="upper.set(!upper())">
+            ToggleCase
+        </button>
+    </div>
+</div>
+<div class="divider my-2"></div>
+
+<section class="my-2">
+    <h1 class="text-2xl font-bold">Filtering by {{search()}} Sorting by {{sortBy()}}</h1>
+    <div class="flex gap-2 justify-end w-full">
+        <input placeholder="Search name" class="input input-bordered w-full max-w-xs" type="text"
+            (input)="search.set(txtSearch.value)" #txtSearch>
+        <button class="btn btn-primary" (click)="sortBy.set('name')">
+            By name
+        </button>
+        <button class="btn btn-accent" (click)="sortBy.set('canFly')">
+            By flying
+        </button>
+        <button class="btn btn-secondary" (click)="sortBy.set('color')">
+            By color
+        </button>
+        <button class="btn btn-info" (click)="sortBy.set('creator')">
+            By creator
+        </button>
+    </div>
+</section>
+
+<div class="overflow-x-auto w-full">
+    <table class="table table-xs w-full">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Canfly</th>
+                <th>Color</th>
+                <th>Craetor</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (hero of heroes() | heroFilter: search() | heroSortBy: sortBy() ; track hero.id) {
+            <tr>
+                <th>{{hero.id}}</th>
+                <td>{{hero.name}}</td>
+                <td>
+                    <span class="text-xs w-44" [class.text-success]="hero.canFly" [class.text-accent]="!hero.canFly">
+                        {{hero.canFly | canFly}}
+                    </span>
+                </td>
+                <td>
+                    <span class="text-xs w-44" [style.color]="hero.color | heroTextColor">
+                        {{hero.color | heroColor | titlecase}}
+                    </span>
+                </td>
+                <td>{{hero.creator | heroCreator}}</td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

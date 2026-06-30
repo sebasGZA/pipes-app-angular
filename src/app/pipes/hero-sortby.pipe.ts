@@ -1,0 +1,23 @@
+import { Pipe, PipeTransform } from '@angular/core';
+import { Hero } from '../interfaces/hero.interface';
+
+@Pipe({
+    name: 'heroSortBy'
+})
+
+export class HeroSortByPipe implements PipeTransform {
+    transform(list: Hero[], property: keyof Hero | null): Hero[] {
+        switch (property) {
+            case 'name':
+                return list.sort((a, b) => a.name.localeCompare(b.name))
+            case 'canFly':
+                return list.sort((a, b) => (a.canFly ? 1 : -1) - (b.canFly ? 1 : -1))
+            case 'color':
+                return list.sort((a, b) => a.color - b.color)
+            case 'creator':
+                return list.sort((a, b) => a.creator - b.creator)
+            default:
+                return list;
+        }
+    }
+}
