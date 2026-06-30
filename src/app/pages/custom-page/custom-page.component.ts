@@ -7,6 +7,8 @@ import { CanFlyPipePipe } from '../../pipes/canfly.pipe';
 import { HeroColorPipe } from '../../pipes/hero-color.pipe';
 import { HeroTextColorPipe } from '../../pipes/hero-text-color.pipe';
 import { HeroCreatorPipe } from '../../pipes/hero-creator.pipe';
+import { HeroSortByPipe } from '../../pipes/hero-sortby.pipe';
+import { Hero } from '../../interfaces/hero.interface';
 
 @Component({
   selector: 'app-custom-page',
@@ -15,6 +17,7 @@ import { HeroCreatorPipe } from '../../pipes/hero-creator.pipe';
     CanFlyPipePipe, 
     HeroColorPipe, 
     HeroCreatorPipe,
+    HeroSortByPipe,
     HeroTextColorPipe,
     TitleCasePipe,
   ],
@@ -25,4 +28,5 @@ export default class CustomPageComponent {
   upper = signal(true)
 
   heroes = signal(heroes)
+  sortBy = signal<keyof Hero | null>(null)
 }

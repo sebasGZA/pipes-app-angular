@@ -17,18 +17,18 @@
 <div class="divider my-2"></div>
 
 <section class="my-2">
-    <h1 class="text-2xl font-bold">Custom pipes in action</h1>
+    <h1 class="text-2xl font-bold">Sorting by {{sortBy()}}</h1>
     <div class="flex gap-2 justify-end w-full">
-        <button class="btn btn-primary">
+        <button class="btn btn-primary" (click)="sortBy.set('name')">
             By name
         </button>
-        <button class="btn btn-accent">
+        <button class="btn btn-accent" (click)="sortBy.set('canFly')">
             By flying
         </button>
-        <button class="btn btn-secondary">
+        <button class="btn btn-secondary" (click)="sortBy.set('color')">
             By color
         </button>
-        <button class="btn btn-info">
+        <button class="btn btn-info" (click)="sortBy.set('creator')">
             By creator
         </button>
     </div>
@@ -36,7 +36,6 @@
 
 <div class="overflow-x-auto w-full">
     <table class="table table-xs w-full">
-        <!-- head -->
         <thead>
             <tr>
                 <th></th>
@@ -47,7 +46,7 @@
             </tr>
         </thead>
         <tbody>
-            @for (hero of heroes(); track hero.id) {
+            @for (hero of heroes() | heroSortBy: sortBy(); track hero.id) {
             <tr>
                 <th>{{hero.id}}</th>
                 <td>{{hero.name}}</td>
